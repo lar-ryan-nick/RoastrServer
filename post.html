@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<script src="node_modules/exif-js/exif.js"></script>
+		<script src="post.js"></script>
+		<link rel="icon" href="http://php-empty-site-p7x3h7.azurewebsites.net/images/Roastr%20App%20icon.png">
+		<title>Roastr</title>
+	</head>
+	<body style="background-color:#3abfbc;">
+			<center>
+				<div style="height:150px;display:inline;">
+					<img onclick="goToMainPage();" style="width:120px;cursor:pointer;display:inline-block;" src="http://php-empty-site-p7x3h7.azurewebsites.net/profilePictures/roastrtransparent.png"/>
+					<p onclick="goToMainPage();" style="font-size:100px;vertical-align:top;margin:0px;cursor:pointer;display:inline-block;">Roastr</p>	
+					</br>
+				</div>
+				<div style="height:25px;">
+					<input type="file" id="image" accept="image/*" onchange="loadImage(this);"/>
+				</div>
+				<div id="poster">
+					<canvas id="canvas" width="500px" height="500px" style="margin-left:175px;background-color:#000000;z-index:-1;"></canvas>
+				</div>
+				<div style="padding:20px;">
+					<textarea id="postCaption" rows="5" style="resize:none;width:70%;"></textarea>
+				</div>
+				<div>
+					<input id="post" type="button" value="Post" style="width:30%;" onclick="post();"></textarea>
+				</div>
+			</center>
+		<script>
+			if (!localStorage.getItem("userID") || parseInt(localStorage.getItem("userID")) <= 0)
+			{
+				window.location.replace("http://php-empty-site-p7x3h7.azurewebsites.net");
+			}
+			function goToMainPage()
+			{
+				location = "http://php-empty-site-p7x3h7.azurewebsites.net/mainpage.html";
+			}
+		</script>
+	</body>
+</html>

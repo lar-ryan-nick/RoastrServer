@@ -1,0 +1,35 @@
+.tabbar 
+{
+	text-align:left;
+	font-size:150%;
+	background-color:#31504d;
+	color:#fcc229;
+	padding:10px;
+}
+.caption 
+{
+	padding:10px;
+	text-align:left;
+	font-size:160%;
+	vertical-align:top;
+	background-color:#2d3142;
+	color:#fcc229;
+}
+.userInfo 
+{
+	display:table-cell;
+	text-align:center;
+	padding-right:30px;
+	font-size:30px;
+	color:#fcc229;
+	width:100px;
+}
+#username 
+{
+	display:table-cell;
+	text-align:center;
+	padding-right:30px;
+	font-size:40px;
+	color:#fcc229;
+	width:300px;
+}

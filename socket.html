@@ -1,0 +1,16 @@
+<html>
+	<head>	
+		<script src="/socket.io/socket.io.js"></script>
+	</head>
+	<body>
+		<script>
+      		var socket = io.connect();
+			socket.emit("addUser", {'user':'1'});
+			socket.emit("sentMessage", {'user':'1', 'message':'Hi butt face'});
+			socket.on('message', function(data){
+	    		console.log(data);
+			});
+    	</script>
+	    <div>This is our socket.html file</div>
+	</body>
+</html>
