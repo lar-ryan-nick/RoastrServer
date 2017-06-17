@@ -35,7 +35,7 @@ class ProfilePage extends React.Component
 				}
 			}
 		}.bind(this)
-		xhttp.open("GET", "http://php-empty-site-p7x3h7.azurewebsites.net/getUserPostCount.php?arg1=" + this.props.user, true);
+		xhttp.open("GET", "http://roastr.azurewebsites.net/getUserPostCount.php?arg1=" + this.props.user, true);
 		xhttp.send();
 	}
 
@@ -98,6 +98,6 @@ else if (location.search.split("=")[0].substr(1) == "username")
 			}
 	    }
     }
-   	xhttp.open("GET", "http://php-empty-site-p7x3h7.azurewebsites.net/getIDForUser.php?arg1='" + location.search.split("=")[1] + "'", true);
+   	xhttp.open("GET", "http://roastr.azurewebsites.net/getIDForUser.php?arg1='" + location.search.split("=")[1] + "'", true);
    	xhttp.send();
 }

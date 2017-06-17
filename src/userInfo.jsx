@@ -38,7 +38,7 @@ class UserInfo extends React.Component
 				this.setState(userData);
 			}
 		}.bind(this);
-		xhttp.open("GET", "http://php-empty-site-p7x3h7.azurewebsites.net/getUserData.php?arg1=" + this.props.user + "&arg2=" + localStorage.getItem("userID"));
+		xhttp.open("GET", "http://roastr.azurewebsites.net/getUserData.php?arg1=" + this.props.user + "&arg2=" + localStorage.getItem("userID"));
 		xhttp.send();
 	}
 
@@ -52,7 +52,7 @@ class UserInfo extends React.Component
 				this.refresh();
 			}
 		}.bind(this);
-		xhttp.open("GET", "http://php-empty-site-p7x3h7.azurewebsites.net/acceptFriendRequestBetweenUsers.php?user1=" + this.props.user + "&user2=" + localStorage.getItem("userID"));
+		xhttp.open("GET", "http://roastr.azurewebsites.net/acceptFriendRequestBetweenUsers.php?user1=" + this.props.user + "&user2=" + localStorage.getItem("userID"));
 		xhttp.send();
 	}
 
@@ -66,7 +66,7 @@ class UserInfo extends React.Component
 				this.refresh();
 			}
 		}.bind(this);
-		xhttp.open("GET", "http://php-empty-site-p7x3h7.azurewebsites.net/addFriendRequest.php?user1=" + localStorage.getItem("userID") + "&user2=" + this.props.user);
+		xhttp.open("GET", "http://roastr.azurewebsites.net/addFriendRequest.php?user1=" + localStorage.getItem("userID") + "&user2=" + this.props.user);
 		xhttp.send();
 	}
 
@@ -80,7 +80,7 @@ class UserInfo extends React.Component
 				this.refresh();
 			}
 		}.bind(this);
-		xhttp.open("GET", "http://php-empty-site-p7x3h7.azurewebsites.net/removeFriendRequestBetweenUsers.php?user1=" + this.props.user + "&user2=" + localStorage.getItem("userID"));
+		xhttp.open("GET", "http://roastr.azurewebsites.net/removeFriendRequestBetweenUsers.php?user1=" + this.props.user + "&user2=" + localStorage.getItem("userID"));
 		xhttp.send();
 	}
 
@@ -171,7 +171,7 @@ class UserInfo extends React.Component
 						this.refresh();
 					}
 				}.bind(this);
-				xhttp.open("POST", "http://php-empty-site-p7x3h7.azurewebsites.net/setProfilePicture.php", true);
+				xhttp.open("POST", "http://roastr.azurewebsites.net/setProfilePicture.php", true);
 				xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 				xhttp.send("picture=" + imageData + "&userID=" + localStorage.getItem("userID"));
 			}.bind(this);
