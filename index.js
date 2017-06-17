@@ -9,7 +9,7 @@ function loadXMLDoc()
 			{
 				loadUserID(function()
 				{
-					window.location.replace("http://php-empty-site-p7x3h7.azurewebsites.net/mainpage.html");
+					window.location.replace("http://roastr.azurewebsites.net/mainpage.html");
 				});
 			}
 			else
@@ -19,7 +19,7 @@ function loadXMLDoc()
 			}
     	}
   	};
-  	xhttp.open("GET", "http://php-empty-site-p7x3h7.azurewebsites.net/checkPassword.php?arg1='" + document.getElementById("user").value + "'&arg2=" + document.getElementById("pass").value, true);
+  	xhttp.open("GET", "http://roastr.azurewebsites.net/checkPassword.php?arg1='" + document.getElementById("user").value + "'&arg2=" + document.getElementById("pass").value, true);
   	xhttp.send();
 }	
 function loadUserID(cb)
@@ -33,6 +33,6 @@ function loadUserID(cb)
 			cb();
     	}
   	};
-  	xhttp.open("GET", "http://php-empty-site-p7x3h7.azurewebsites.net/getIDForUser.php?arg1='" + document.getElementById("user").value + "'", true);
+  	xhttp.open("GET", "http://roastr.azurewebsites.net/getIDForUser.php?arg1='" + document.getElementById("user").value + "'", true);
   	xhttp.send();
 }

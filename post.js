@@ -321,7 +321,7 @@ function post()
 			if (this.readyState == 4 && this.status == 200)
 			{
 				console.log(this.responseText);
-				window.location.replace("http://php-empty-site-p7x3h7.azurewebsites.net/mainpage.html");
+				window.location.replace("http://roastr.azurewebsites.net/mainpage.html");
 			}
 			else if (this.status == 404)
 			{
@@ -334,7 +334,7 @@ function post()
 		imageData = preview.toDataURL("image/jpeg", 1.0).split(",")[1];
 		imageData = imageData.replace(/[+]/g, "%2B");
 		console.log(imageData);
-		xhttp.open("POST", "http://php-empty-site-p7x3h7.azurewebsites.net/addPost.php", true);
+		xhttp.open("POST", "http://roastr.azurewebsites.net/addPost.php", true);
 		xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		xhttp.send("image=" + imageData + "&caption=\"" + caption.value + "\"&userID=" + localStorage.getItem("userID"));
 		var postButton = document.getElementById("post");
