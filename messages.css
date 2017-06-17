@@ -1,0 +1,18 @@
+.inputtitle
+{
+	padding:10px;
+	line-height:.5;
+	text-align:left;
+	font-size:300%;
+	color:#fcc229;
+}
+input
+{
+	font-size:100%;
+	width:100%;
+}
+button
+{
+	font-size:100%;
+	width:100%;
+}
