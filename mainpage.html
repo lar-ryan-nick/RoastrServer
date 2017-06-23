@@ -14,7 +14,7 @@
 		</div>
 		<div id="userInfo" style="position:fixed;top:100px;left:50%;width:45%;height:100px;background-color:#2d3142;"></div>
 		<div id="messages" style="position:fixed;top:225px;left:50%;width:45%;height:calc(100% - 250px);"></div>
-		<script src="bin/bundle.js"></script>
+		<script src="bundle.js"></script>
 		<script>
 			document.getElementById("profileButton").href = "http://roastr.azurewebsites.net/profile.html?user=" + localStorage.getItem("userID");
 			if (!localStorage.getItem("userID") || parseInt(localStorage.getItem("userID")) <= 0)
