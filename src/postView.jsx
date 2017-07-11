@@ -12,7 +12,7 @@ class TopBar extends React.Component
         return(
             <div style={{padding:10, backgroundColor:"#3d4553"}}>
                 <img style={{width:46, height:46, borderRadius:23, verticalAlign:"top"}} src={"profilePictures/" + this.props.profileFilename}/>
-                <a href={"http://35.164.1.3/profile.html?user=" + this.props.user} style={{margin:0, display:"inline-block", fontSize:40, verticalAlign:"top", color:"#fcc229", paddingLeft:15, textDecoration:"none"}}>{this.props.username}</a>
+                <a href={"https://roastr2.herokuapp.com/profile.html?user=" + this.props.user} style={{margin:0, display:"inline-block", fontSize:40, verticalAlign:"top", color:"#fcc229", paddingLeft:15, textDecoration:"none"}}>{this.props.username}</a>
             </div>
         )
     }
@@ -101,7 +101,7 @@ class Comments extends React.Component
 				}.bind(this));
 	    	}
     	}.bind(this)
-    	xhttp.open("GET", "http://35.164.1.3/addComment.php?comment=\"" + this.textField.value + "\"&post=" + this.props.post + "&user=" + localStorage.getItem("userID"));
+    	xhttp.open("GET", "https://roastr2.herokuapp.com/addComment.php?comment=\"" + this.textField.value + "\"&post=" + this.props.post + "&user=" + localStorage.getItem("userID"));
     	xhttp.send();
 		this.textField.value = "";
    }
@@ -149,7 +149,7 @@ class Comments extends React.Component
     			}
     		}
     	}.bind(this)
-    	xhttp.open("GET", "http://35.164.1.3/getCommentData.php?arg1=" + this.props.post + "&arg2=" + (this.props.comments - this.commentsLoaded));
+    	xhttp.open("GET", "https://roastr2.herokuapp.com/getCommentData.php?arg1=" + this.props.post + "&arg2=" + (this.props.comments - this.commentsLoaded));
     	xhttp.send();
     }
 
@@ -166,7 +166,7 @@ class Comments extends React.Component
 				{
 					if (word.substr(0, 1) == "@")
 					{
-           	    	    tags.push(<a key={i} href={"http://35.164.1.3/profile.html?username=" + word.substr(1)} style={{verticalAlign:"top", margin:0, color:"#e77225", paddingLeft:5, display:"inline-block", textDecoration:"none"}}>{word.substr(1)}</a>);
+           	    	    tags.push(<a key={i} href={"https://roastr2.herokuapp.com/profile.html?username=" + word.substr(1)} style={{verticalAlign:"top", margin:0, color:"#e77225", paddingLeft:5, display:"inline-block", textDecoration:"none"}}>{word.substr(1)}</a>);
 					}
 					else
 					{
@@ -180,7 +180,7 @@ class Comments extends React.Component
             	    <div style={{padding:10}} key={key}>
             	        <img style={{width:40, height:40, borderRadius:20}} src={"profilePictures/" + comment.profileFilename}/>
 						<div style={{display:"inline-block", verticalAlign:"top", width:"calc(100% - 40px)"}}>
-            	        	<a href={"http://35.164.1.3/profile.html?user=" + comment.user} style={{paddingLeft:5, verticalAlign:"top", margin:0, display:"inline-block", color:"#fcc229", textDecoration:"none"}}>{comment.username}:</a>
+            	        	<a href={"https://roastr2.herokuapp.com/profile.html?user=" + comment.user} style={{paddingLeft:5, verticalAlign:"top", margin:0, display:"inline-block", color:"#fcc229", textDecoration:"none"}}>{comment.username}:</a>
 							{tags}
 						</div>
 					</div>
@@ -191,7 +191,7 @@ class Comments extends React.Component
             	comments.push(
             	    <div style={{padding:10}} key={key}>
 						<div style={{display:"inline-block", verticalAlign:"top", width:"calc(100% - 40px)"}}>
-            	        	<a href={"http://35.164.1.3/profile.html?user=" + comment.user} style={{paddingLeft:5, verticalAlign:"top", margin:0, display:"inline-block", color:"#fcc229", textDecoration:"none"}}>{comment.username}:</a>
+            	        	<a href={"https://roastr2.herokuapp.com/profile.html?user=" + comment.user} style={{paddingLeft:5, verticalAlign:"top", margin:0, display:"inline-block", color:"#fcc229", textDecoration:"none"}}>{comment.username}:</a>
 							{tags}
 						</div>
                		</div>
@@ -268,7 +268,7 @@ class PostView extends React.Component
 				}
 	    	}
     	}.bind(this)
-    	xhttp.open("GET", "http://35.164.1.3/getPostData.php?arg1=" + this.props.user + "&arg2=" + this.props.post + "&arg3=" + localStorage.getItem("userID"), true);
+    	xhttp.open("GET", "https://roastr2.herokuapp.com/getPostData.php?arg1=" + this.props.user + "&arg2=" + this.props.post + "&arg3=" + localStorage.getItem("userID"), true);
     	xhttp.send();
     }
 
@@ -282,7 +282,7 @@ class PostView extends React.Component
                 this.refresh();
 	    	}
     	}.bind(this)
-    	xhttp.open("GET", "http://35.164.1.3/addLike.php?user=" + localStorage.getItem("userID") + "&post=" + this.state.id, true);
+    	xhttp.open("GET", "https://roastr2.herokuapp.com/addLike.php?user=" + localStorage.getItem("userID") + "&post=" + this.state.id, true);
     	xhttp.send();
     }
 
@@ -296,7 +296,7 @@ class PostView extends React.Component
 	    		this.refresh();
     		}
     	}.bind(this)
-    	xhttp.open("GET", "http://35.164.1.3/removeLike.php?user=" + localStorage.getItem("userID") + "&post=" + this.state.id, true);
+    	xhttp.open("GET", "https://roastr2.herokuapp.com/removeLike.php?user=" + localStorage.getItem("userID") + "&post=" + this.state.id, true);
     	xhttp.send();
     }
 
@@ -311,7 +311,7 @@ class PostView extends React.Component
 			{
 				if (word.substr(0, 1) == "@")
 				{
-          	        tags.push(<a key={i} href={"http://35.164.1.3/profile.html?username=" + word.substr(1)} style={{verticalAlign:"top", margin:0, color:"#e77225", paddingLeft:5, display:"inline-block", textDecoration:"none"}}>{word.substr(1)}</a>);
+          	        tags.push(<a key={i} href={"https://roastr2.herokuapp.com/profile.html?username=" + word.substr(1)} style={{verticalAlign:"top", margin:0, color:"#e77225", paddingLeft:5, display:"inline-block", textDecoration:"none"}}>{word.substr(1)}</a>);
 				}
 				else
 				{

@@ -31,7 +31,7 @@ class MessagePage extends React.Component
 		this.addMessages = this.addMessages.bind(this);
 		this.refresh = this.refresh.bind(this);
 		this.sendMessage = this.sendMessage.bind(this);
-		this.socket = io("http://35.164.1.3:8000");
+		this.socket = io("https://roastr2.herokuapp.com:8000");
 		this.socket.emit("addUser", {user:localStorage.getItem("userID")});
 		this.socket.on("message", function(data){
 			let newState = this.state;
@@ -69,7 +69,7 @@ class MessagePage extends React.Component
 				}
 			}
 		}.bind(this)
-		xhttp.open("GET", "http://35.164.1.3/getConversationData.php?arg1=" + localStorage.getItem("userID") + "&arg2=" + index);
+		xhttp.open("GET", "https://roastr2.herokuapp.com/getConversationData.php?arg1=" + localStorage.getItem("userID") + "&arg2=" + index);
 		xhttp.send();
 	}
 
@@ -83,7 +83,7 @@ class MessagePage extends React.Component
 				cb();
 			}
 		}.bind(this)
-		xhttp.open("GET", "http://35.164.1.3/getNumConversations.php?arg1=" + localStorage.getItem("userID"));
+		xhttp.open("GET", "https://roastr2.herokuapp.com/getNumConversations.php?arg1=" + localStorage.getItem("userID"));
 		xhttp.send();
 	}
 
@@ -113,7 +113,7 @@ class MessagePage extends React.Component
 				cb();
 			}
 		}.bind(this)
-		xhttp.open("GET", "http://35.164.1.3/getNumMessages.php?user1=" + localStorage.getItem("userID") + "&user2=" + this.state.messages.user);
+		xhttp.open("GET", "https://roastr2.herokuapp.com/getNumMessages.php?user1=" + localStorage.getItem("userID") + "&user2=" + this.state.messages.user);
 		xhttp.send();
 	}
 
@@ -128,7 +128,7 @@ class MessagePage extends React.Component
 				this.setState(newState);
 			}
 		}.bind(this);
-		xhttp.open("GET", "http://35.164.1.3/getMessageData.php?user1=" + localStorage.getItem("userID") + "&user2=" + this.state.messages.user + "&index=" + index);
+		xhttp.open("GET", "https://roastr2.herokuapp.com/getMessageData.php?user1=" + localStorage.getItem("userID") + "&user2=" + this.state.messages.user + "&index=" + index);
 		xhttp.send();
 	}
 
@@ -172,7 +172,7 @@ class MessagePage extends React.Component
 					this.refresh();
 				}
 			}.bind(this)
-			xhttp.open("GET", "http://35.164.1.3/addMessage.php?message=" + text + "&sender=" + localStorage.getItem("userID") + "&receiver=" + this.state.messages.user);
+			xhttp.open("GET", "https://roastr2.herokuapp.com/addMessage.php?message=" + text + "&sender=" + localStorage.getItem("userID") + "&receiver=" + this.state.messages.user);
 			xhttp.send();
 		}
 	}

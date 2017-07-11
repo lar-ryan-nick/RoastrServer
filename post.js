@@ -321,7 +321,7 @@ function post()
 			if (this.readyState == 4 && this.status == 200)
 			{
 				console.log(this.responseText);
-				window.location.replace("http://35.164.1.3/mainpage.html");
+				window.location.replace("https://roastr2.herokuapp.com/mainpage.html");
 			}
 			else if (this.status == 404)
 			{
@@ -334,7 +334,7 @@ function post()
 		imageData = preview.toDataURL("image/jpeg", 1.0).split(",")[1];
 		imageData = imageData.replace(/[+]/g, "%2B");
 		console.log(imageData);
-		xhttp.open("POST", "http://35.164.1.3/addPost.php", true);
+		xhttp.open("POST", "https://roastr2.herokuapp.com/addPost.php", true);
 		xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		xhttp.send("image=" + imageData + "&caption=\"" + caption.value + "\"&userID=" + localStorage.getItem("userID"));
 		var postButton = document.getElementById("post");

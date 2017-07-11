@@ -38,7 +38,7 @@ class UserInfo extends React.Component
 				this.setState(userData);
 			}
 		}.bind(this);
-		xhttp.open("GET", "http://35.164.1.3/getUserData.php?arg1=" + this.props.user + "&arg2=" + localStorage.getItem("userID"));
+		xhttp.open("GET", "https://roastr2.herokuapp.com/getUserData.php?arg1=" + this.props.user + "&arg2=" + localStorage.getItem("userID"));
 		xhttp.send();
 	}
 
@@ -52,7 +52,7 @@ class UserInfo extends React.Component
 				this.refresh();
 			}
 		}.bind(this);
-		xhttp.open("GET", "http://35.164.1.3/acceptFriendRequestBetweenUsers.php?user1=" + this.props.user + "&user2=" + localStorage.getItem("userID"));
+		xhttp.open("GET", "https://roastr2.herokuapp.com/acceptFriendRequestBetweenUsers.php?user1=" + this.props.user + "&user2=" + localStorage.getItem("userID"));
 		xhttp.send();
 	}
 
@@ -66,7 +66,7 @@ class UserInfo extends React.Component
 				this.refresh();
 			}
 		}.bind(this);
-		xhttp.open("GET", "http://35.164.1.3/addFriendRequest.php?user1=" + localStorage.getItem("userID") + "&user2=" + this.props.user);
+		xhttp.open("GET", "https://roastr2.herokuapp.com/addFriendRequest.php?user1=" + localStorage.getItem("userID") + "&user2=" + this.props.user);
 		xhttp.send();
 	}
 
@@ -80,7 +80,7 @@ class UserInfo extends React.Component
 				this.refresh();
 			}
 		}.bind(this);
-		xhttp.open("GET", "http://35.164.1.3/removeFriendRequestBetweenUsers.php?user1=" + this.props.user + "&user2=" + localStorage.getItem("userID"));
+		xhttp.open("GET", "https://roastr2.herokuapp.com/removeFriendRequestBetweenUsers.php?user1=" + this.props.user + "&user2=" + localStorage.getItem("userID"));
 		xhttp.send();
 	}
 
@@ -171,7 +171,7 @@ class UserInfo extends React.Component
 						this.refresh();
 					}
 				}.bind(this);
-				xhttp.open("POST", "http://35.164.1.3/setProfilePicture.php", true);
+				xhttp.open("POST", "https://roastr2.herokuapp.com/setProfilePicture.php", true);
 				xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 				xhttp.send("picture=" + imageData + "&userID=" + localStorage.getItem("userID"));
 			}.bind(this);
