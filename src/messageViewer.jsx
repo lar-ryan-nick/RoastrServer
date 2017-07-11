@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 class Message extends React.Component
 {
 	constructor(props)
@@ -94,7 +95,7 @@ class MessageViewer extends React.Component
 					<div style={{backgroundColor:"#fefeff", height:"10%"}}>
 						<center>
 							<img height="100%" style={{display:"inline-block", borderRadius:"50%"}} src={"profilePictures/" + this.props.data.profilePicture}/>
-							<a href={"http://roastr.azurewebsites.net/profile.html?user=" + this.props.data.user} style={{paddingLeft:10, margin:0, textDecoration:"none", verticalAlign:"top", display:"inline-block", fontSize:"2em", color:"#000000"}}>{this.props.data.username}</a>
+							<a href={"http://35.164.1.3/profile.html?user=" + this.props.data.user} style={{paddingLeft:10, margin:0, textDecoration:"none", verticalAlign:"top", display:"inline-block", fontSize:"2em", color:"#000000"}}>{this.props.data.username}</a>
 						</center>
 					</div>
 					<div ref={(input) => {this.messages = input;}} onScroll={this.handleScroll} style={{height:"85%", overflowY:"auto", backgroundColor:"#2d3142"}}>

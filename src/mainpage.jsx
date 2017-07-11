@@ -35,7 +35,7 @@ class NewsFeed extends React.Component
 				}
 			}
 		}.bind(this)
-		xhttp.open("GET", "http://roastr.azurewebsites.net/getPostCount.php", true);
+		xhttp.open("GET", "http://35.164.1.3/getPostCount.php", true);
 		xhttp.send();
 	}
 

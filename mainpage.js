@@ -4,7 +4,7 @@ var postsLoaded = 0;
 var postData = [];
 function goToPostPage()
 {
-	window.location = "http://roastr.azurewebsites.net/post.html";
+	window.location = "http://35.164.1.3/post.html";
 }
 function loadNumPosts(cb)
 {
@@ -18,7 +18,7 @@ function loadNumPosts(cb)
 			cb();
 		}
 	}
-	xhttp.open("GET", "http://roastr.azurewebsites.net/getPostCount.php", true);
+	xhttp.open("GET", "http://35.164.1.3/getPostCount.php", true);
 	xhttp.send();
 }
 function loadPost(arg1, arg2, cb)
@@ -35,7 +35,7 @@ function loadPost(arg1, arg2, cb)
 			cb();
 		}
 	}
-	xhttp.open("GET", "http://roastr.azurewebsites.net/getPostData.php?arg1=" + arg1 + "&arg2=" + arg2 + "&arg3=" + localStorage.getItem("userID"), true);
+	xhttp.open("GET", "http://35.164.1.3/getPostData.php?arg1=" + arg1 + "&arg2=" + arg2 + "&arg3=" + localStorage.getItem("userID"), true);
 	xhttp.timeout = 0;
 	xhttp.send();
 }
@@ -381,7 +381,7 @@ function hatePost(postID)
 			getNumHates(hate.id);
 		}
 	}
-	xhttp.open("GET", "http://roastr.azurewebsites.net/addLike.php?user=" + localStorage.getItem("userID") + "&post=" + postID, true);
+	xhttp.open("GET", "http://35.164.1.3/addLike.php?user=" + localStorage.getItem("userID") + "&post=" + postID, true);
 	xhttp.send();
 }
 function unhatePost(postID)
@@ -400,7 +400,7 @@ function unhatePost(postID)
 			getNumHates(hate.id);
 		}
 	}
-	xhttp.open("GET", "http://roastr.azurewebsites.net/removeLike.php?user=" + localStorage.getItem("userID") + "&post=" + postID, true);
+	xhttp.open("GET", "http://35.164.1.3/removeLike.php?user=" + localStorage.getItem("userID") + "&post=" + postID, true);
 	xhttp.send();
 }
 function getNumHates(postID)
@@ -421,13 +421,13 @@ function getNumHates(postID)
 			}
 		}
 	}
-	xhttp.open("GET", "http://roastr.azurewebsites.net/getNumLikes.php?arg1=" + postID, true);
+	xhttp.open("GET", "http://35.164.1.3/getNumLikes.php?arg1=" + postID, true);
 	xhttp.send();
 }
 function loadComment(postID, index, cb)
 {
 	var xhttp = new XMLHttpRequest();
-	//console.log("http://roastr.azurewebsites.net/getCommentData.php?arg1=" + postID + "&arg2=" + index);
+	//console.log("http://35.164.1.3/getCommentData.php?arg1=" + postID + "&arg2=" + index);
 	xhttp.onreadystatechange = function()
 	{
 		if (this.readyState == 4 && this.status == 200)
@@ -439,7 +439,7 @@ function loadComment(postID, index, cb)
 			}
 		}
 	}
-	xhttp.open("GET", "http://roastr.azurewebsites.net/getCommentData.php?arg1=" + postID + "&arg2=" + index);
+	xhttp.open("GET", "http://35.164.1.3/getCommentData.php?arg1=" + postID + "&arg2=" + index);
 	xhttp.send();
 }
 function loadComments(postID, start, end, cb)
@@ -482,7 +482,7 @@ function getNumComments(postID, cb)
 			cb();
 		}
 	}
-	xhttp.open("GET", "http://roastr.azurewebsites.net/getNumComments.php?arg1=" + postID, true);
+	xhttp.open("GET", "http://35.164.1.3/getNumComments.php?arg1=" + postID, true);
 	xhttp.send();
 }
 function addComment(postID, comment, cb)
@@ -496,7 +496,7 @@ function addComment(postID, comment, cb)
 		}
 	}
 	//console.log(comment);
-	xhttp.open("GET", "http://roastr.azurewebsites.net/addComment.php?comment=\"" + comment + "\"&post=" + postID + "&user=" + localStorage.getItem("userID"));
+	xhttp.open("GET", "http://35.164.1.3/addComment.php?comment=\"" + comment + "\"&post=" + postID + "&user=" + localStorage.getItem("userID"));
 	xhttp.send();
 }
 function getUserData(cb)
@@ -510,7 +510,7 @@ function getUserData(cb)
 		}
 	}
 	//console.log(comment);
-	xhttp.open("GET", "http://roastr.azurewebsites.net/getUserData.php?&arg1=" + localStorage.getItem("userID") + "&arg2=" + localStorage.getItem("userID"));
+	xhttp.open("GET", "http://35.164.1.3/getUserData.php?&arg1=" + localStorage.getItem("userID") + "&arg2=" + localStorage.getItem("userID"));
 	xhttp.send();
 }
 function handleUserInfo()
