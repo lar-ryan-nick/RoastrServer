@@ -9,7 +9,7 @@ function loadXMLDoc()
 			{
 				loadUserID(function()
 				{
-					window.location.replace("http://35.164.1.3/mainpage.html");
+					window.location.replace("https://roastr2.herokuapp.com/mainpage.html");
 				});
 			}
 			else
@@ -19,7 +19,7 @@ function loadXMLDoc()
 			}
     	}
   	};
-  	xhttp.open("GET", "http://35.164.1.3/checkPassword.php?arg1='" + document.getElementById("user").value + "'&arg2=" + document.getElementById("pass").value, true);
+  	xhttp.open("GET", "https://roastr2.herokuapp.com/checkPassword.php?arg1='" + document.getElementById("user").value + "'&arg2=" + document.getElementById("pass").value, true);
   	xhttp.send();
 }	
 function loadUserID(cb)
@@ -33,6 +33,6 @@ function loadUserID(cb)
 			cb();
     	}
   	};
-  	xhttp.open("GET", "http://35.164.1.3/getIDForUser.php?arg1='" + document.getElementById("user").value + "'", true);
+  	xhttp.open("GET", "https://roastr2.herokuapp.com/getIDForUser.php?arg1='" + document.getElementById("user").value + "'", true);
   	xhttp.send();
 }
