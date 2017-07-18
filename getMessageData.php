@@ -1,8 +1,8 @@
 <?php
-$conn = mysqli_connect("roastr.cwskii6ncohr.us-west-2.rds.amazonaws.com", "root", "Patrick4", "roastr", "3306");
+$conn = pg_connect("host=ec2-107-21-205-25.compute-1.amazonaws.com port=5432 dbname=d4v9qcehkq46dq user=lbzclfrlzbwlmj password=2b4aa87b7fa7b7b4761c1e57e540836210b309d95b08853e09ce6158ada6bab9");
 // Check connection
 if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+    die("Connection failed: " . pg_last_error());
 }
 
 $user1 = $_GET['user1'];
@@ -10,16 +10,16 @@ $user2 = $_GET['user2'];
 $index = $_GET['index'];
 
 $sql = "SELECT * FROM messages WHERE (sender = $user1 AND receiver = $user2) OR (sender = $user2 AND receiver = $user1) ORDER BY timeSent";
-$result = mysqli_query($conn, $sql);
-if (mysqli_num_rows($result) > 0)
+$result = pg_query($conn, $sql);
+if (pg_num_rows($result) > 0)
 {
     for ($i = 0; $i < $index; $i++)
     {
-		$row = mysqli_fetch_assoc($result);
+		$row = pg_fetch_array($result);
     }
 	$sql = "SELECT username, profilePicture FROM users WHERE id = " . $row['sender'];
-	$result = mysqli_query($conn, $sql);
-	if ($row2 = mysqli_fetch_assoc($result))
+	$result = pg_query($conn, $sql);
+	if ($row2 = pg_fetch_array($result))
 	{
 		$filename = $row2['profilePicture'];
 		$file = fopen("profilePictures/$filename", "r");
@@ -30,16 +30,16 @@ if (mysqli_num_rows($result) > 0)
 	}
 	else
 	{
-		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+		echo "Error: " . $sql . "<br>" . pg_last_error($conn);
 	}
 }
-else if (mysqli_num_rows($result) === 0)
+else if (pg_num_rows($result) === 0)
 {
     echo "No messages";
 }
 else
 {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    echo "Error: " . $sql . "<br>" . pg_last_error($conn);
 }
-mysqli_close($conn);
+pg_close($conn);
 ?>

@@ -1,19 +1,19 @@
 <?php
-$conn = mysqli_connect("roastr.cwskii6ncohr.us-west-2.rds.amazonaws.com", "root", "Patrick4", "roastr", "3306");
+$conn = pg_connect("host=ec2-107-21-205-25.compute-1.amazonaws.com port=5432 dbname=d4v9qcehkq46dq user=lbzclfrlzbwlmj password=2b4aa87b7fa7b7b4761c1e57e540836210b309d95b08853e09ce6158ada6bab9");
 // Check connection
 if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+    die("Connection failed: " . pg_last_error());
 }
 
 $id = $_GET['arg1'];
 
 $sql = "SELECT caption FROM posts WHERE id = $id";
-$result = mysqli_query($conn, $sql);
+$result = pg_query($conn, $sql);
 
-if ($row = mysqli_fetch_assoc($result))
+if ($row = pg_fetch_array($result))
 {
     echo $row["caption"];
 }
 
-mysqli_close($conn);
+pg_close($conn);
 ?>

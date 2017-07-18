@@ -1,8 +1,8 @@
 <?php
-$conn =mysqli_connect("roastr.cwskii6ncohr.us-west-2.rds.amazonaws.com", "root", "Patrick4", "roastr", "3306");
+$conn = pg_connect("host=ec2-107-21-205-25.compute-1.amazonaws.com port=5432 dbname=d4v9qcehkq46dq user=lbzclfrlzbwlmj password=2b4aa87b7fa7b7b4761c1e57e540836210b309d95b08853e09ce6158ada6bab9");
 // Check connection
 if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+    die("Connection failed: " . pg_last_error());
 }
 
 $image = $_REQUEST['image'];
@@ -10,9 +10,9 @@ $caption = $_REQUEST['caption'];
 $user = $_REQUEST['userID'];
 
 $sql = "SELECT id FROM posts";
-$result = mysqli_query($conn, $sql);
-$post = mysqli_num_rows($result) + 1;
-for ($i = 1; $row = mysqli_fetch_assoc($result); $i++)
+$result = pg_query($conn, $sql);
+$post = pg_num_rows($result) + 1;
+for ($i = 1; $row = pg_fetch_array($result); $i++)
 {
 	if ($i < $row['id'])
 	{
@@ -23,7 +23,7 @@ for ($i = 1; $row = mysqli_fetch_assoc($result); $i++)
 
 if ($image == "")
 {
-    $sql = "INSERT INTO posts (id, caption, user)
+    $sql = "INSERT INTO posts (id, caption, \"user\")
             VALUES ($post, " . chop($caption) . ", $user)";
 }
 else
@@ -35,18 +35,18 @@ else
 	$image = base64_decode($image);
 	fwrite($file, $image);
 	fclose($file);
-	$sql = "INSERT INTO posts (id, image, caption, user)
+	$sql = "INSERT INTO posts (id, image, caption, \"user\")
             VALUES ($post, \"$name\", " . chop($caption) . ", $user)";   
 }   
-if (mysqli_query($conn, $sql)) 
+if (pg_query($conn, $sql)) 
 {
     echo "New record created successfully <br>";
-	$sql = "SELECT id, user, post FROM likes";
-	$result = mysqli_query($conn, $sql);
+	$sql = "SELECT * FROM likes";
+	$result = pg_query($conn, $sql);
 	if ($result)
 	{
-	    $like = mysqli_num_rows($result) + 1;
-	    for ($i = 1; $row = mysqli_fetch_assoc($result); $i++)
+	    $like = pg_num_rows($result) + 1;
+	    for ($i = 1; $row = pg_fetch_array($result); $i++)
 		{   
    	    	if ($i < $row['id'])
    	    	{   
@@ -54,14 +54,14 @@ if (mysqli_query($conn, $sql))
             	break;
         	}   
 		}   
-		$sql = "INSERT INTO likes (id, user, post)
+		$sql = "INSERT INTO likes (id, \"user\", post)
 				VALUES ($like, 0, $post)";
-		mysqli_query($conn, $sql);
+		pg_query($conn, $sql);
     }   
 } 
 else
 {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    echo "Error: " . $sql . "<br>" . pg_last_error($conn);
 }
 $index = 0;
 $deviceTokens = array();
@@ -76,8 +76,8 @@ while ($index = strpos($caption, "@", $index))
 		$substring = substr($caption, $index + 1, strlen($caption) - $index - 2);
 	}
 	$sql = "SELECT deviceToken FROM users WHERE username = \"$substring\"";
-	$result = mysqli_query($conn, $sql);
-	if ($row = mysqli_fetch_assoc($result))
+	$result = pg_query($conn, $sql);
+	if ($row = pg_fetch_array($result))
     {   
     	$deviceTokens[] = $row["deviceToken"];
     }
@@ -87,8 +87,8 @@ echo json_encode($deviceTokens) . " <br>";
 if ($deviceTokens)
 {
 	$sql = "SELECT username FROM users WHERE id = $user";
-	$result = mysqli_query($conn, $sql);
-	if ($row = mysqli_fetch_assoc($result))
+	$result = pg_query($conn, $sql);
+	if ($row = pg_fetch_array($result))
 	{
 		$username = $row['username'];
 	}
@@ -125,7 +125,6 @@ if ($deviceTokens)
 	}
 	socket_close($apns);
 	fclose($apns);
-
 }
-mysqli_close($conn);
+pg_close($conn);
 ?>

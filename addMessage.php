@@ -1,8 +1,8 @@
 <?php
-$conn =mysqli_connect("roastr.cwskii6ncohr.us-west-2.rds.amazonaws.com", "root", "Patrick4", "roastr", "3306");
+$conn = pg_connect("host=ec2-107-21-205-25.compute-1.amazonaws.com port=5432 dbname=d4v9qcehkq46dq user=lbzclfrlzbwlmj password=2b4aa87b7fa7b7b4761c1e57e540836210b309d95b08853e09ce6158ada6bab9");
 // Check connection
 if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+    die("Connection failed: " . pg_last_error());
 }
 
 $message = $_REQUEST['message'];
@@ -15,11 +15,11 @@ if ($sender == 0 || $receiver == 0)
 }
 
 $sql = "SELECT id FROM messages";
-$result = mysqli_query($conn, $sql);
+$result = pg_query($conn, $sql);
 if ($result)
 {
-    $id = mysqli_num_rows($result) + 1;
-    for ($i = 1; $row = mysqli_fetch_assoc($result); $i++)
+    $id = pg_num_rows($result) + 1;
+    for ($i = 1; $row = pg_fetch_array($result); $i++)
     {   
         if ($i < $row['id'])
         {   
@@ -30,30 +30,30 @@ if ($result)
 }
 else
 {
-    echo "Error: $sql <br>" . mysqli_error($conn);
+    echo "Error: $sql <br>" . pg_last_error($conn);
 }	
 
 $sql = "INSERT INTO messages (id, message, sender, receiver)
         VALUES ($id, \"" . chop($message) . "\", $sender, $receiver)";
-if (mysqli_query($conn, $sql))
+if (pg_query($conn, $sql))
 {
     echo "New record created successfully <br>";
 }
 else
 {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    echo "Error: " . $sql . "<br>" . pg_last_error($conn);
 }
 if ($sender != $receiver)
 {   
     $sql = "SELECT username FROM users WHERE id = $sender";
-	$result = mysqli_query($conn, $sql);
-	if ($row = mysqli_fetch_assoc($result))
+	$result = pg_query($conn, $sql);
+	if ($row = pg_fetch_array($result))
 	{
     	$username = $row['username'];
 	}
 	$sql = "SELECT deviceToken FROM users WHERE id = $receiver";
-    $result = mysqli_query($conn, $sql);
-    if ($row = mysqli_fetch_assoc($result))
+    $result = pg_query($conn, $sql);
+    if ($row = pg_fetch_array($result))
     {   
         $deviceToken = $row['deviceToken'];
     }
@@ -90,5 +90,5 @@ if ($sender != $receiver)
 	fclose($apns);
 
 }
-mysqli_close($conn);
+pg_close($conn);
 ?>

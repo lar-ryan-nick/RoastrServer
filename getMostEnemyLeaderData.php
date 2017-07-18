@@ -1,26 +1,26 @@
 <?php
-$conn = mysqli_connect("roastr.cwskii6ncohr.us-west-2.rds.amazonaws.com", "root", "Patrick4", "roastr", "3306");
+$conn = pg_connect("host=ec2-107-21-205-25.compute-1.amazonaws.com port=5432 dbname=d4v9qcehkq46dq user=lbzclfrlzbwlmj password=2b4aa87b7fa7b7b4761c1e57e540836210b309d95b08853e09ce6158ada6bab9");
 // Check connection
 if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+    die("Connection failed: " . pg_last_error());
 }
 
 $index = $_GET['arg1'];
 
 $sql = "SELECT id FROM users";
-$result3 = mysqli_query($conn, $sql);
+$result3 = pg_query($conn, $sql);
 $friends = array();
-while ($row3 = mysqli_fetch_assoc($result3))
+while ($row3 = pg_fetch_array($result3))
 {
 $friends[$row3['id']] = 0;
 $sql = "SELECT id FROM friends WHERE accepted = 1 AND (requester = " . $row3['id'] . " OR receiver = " . $row3['id'] . ")";
-if ($result = mysqli_query($conn, $sql)) 
+if ($result = pg_query($conn, $sql)) 
 {
-	$friends[$row3['id']] += mysqli_num_rows($result);
+	$friends[$row3['id']] += pg_num_rows($result);
 }
 else
 {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    echo "Error: " . $sql . "<br>" . pg_last_error($conn);
 }
 }
 	//echo json_encode($likes) . '<br>';
@@ -38,8 +38,8 @@ else
 		}	
 	}
 		$sql = "SELECT username, profilePicture FROM users WHERE id = " . $largest;
-    	$result2 = mysqli_query($conn, $sql);
-    	if ($row2 = mysqli_fetch_assoc($result2))
+    	$result2 = pg_query($conn, $sql);
+    	if ($row2 = pg_fetch_array($result2))
     	{
 			$filename = $row2['profilePicture'];
 	    	$file = fopen("profilePictures/$filename", "r");
@@ -51,8 +51,8 @@ else
 		}
 		else
     	{
-        	echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        	echo "Error: " . $sql . "<br>" . pg_last_error($conn);
     	}
 
-mysqli_close($conn);
+pg_close($conn);
 ?>
