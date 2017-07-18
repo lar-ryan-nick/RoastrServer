@@ -55,13 +55,13 @@ if ($result = pg_query($conn, $sql))
 	}
 	else
 	{
-		echo "Fuck Error: $sql <br>" . pg_error($conn);
+		echo "Fuck Error: $sql <br>";
 	}
 	$sql = "SELECT id FROM comments WHERE post = ". $row['id'];
 	$result = pg_query($conn, $sql);
 	if (!$result)
 	{
-		echo "Ass Error: $sql <br>" . pg_error($conn);
+		echo "Ass Error: $sql <br>";
 	}
 	$liked = false;
 	$result2;
@@ -85,7 +85,7 @@ if ($result = pg_query($conn, $sql))
 } 
 else 
 {
-    echo "Shit Error: " . $sql . "<br>" . pg_error($conn);
+    echo "Shit Error: " . $sql . "<br>";
 }
 
 pg_close($conn);
