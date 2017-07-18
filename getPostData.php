@@ -19,7 +19,7 @@ else if ($user == 0)
 }
 else
 {
-	$sql = "SELECT * FROM POSTS WHERE \"USER\" = $user ORDER BY TIMEPOSTED";
+	$sql = "SELECT * FROM POSTS WHERE \"user\" = $user ORDER BY TIMEPOSTED";
 }
 
 if ($result = pg_query($conn, $sql)) 
