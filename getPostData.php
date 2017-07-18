@@ -78,7 +78,7 @@ if ($result = pg_query($conn, $sql))
 			}
 		}
 	}
-	$postData = array('imageFilename' => $filename, 'profileFilename' => $filename2, 'image' => $image, 'id' => $row['id'], 'user' => $row['user'], 'timePosted' => $row['timePosted'], 'caption' => $row['caption'], 'username' => $row2['username'], 'likes' => pg_num_rows($result2) - 1, 'liked' => $liked, 'comments' => pg_num_rows($result), 'profilePicture' => $profilePicture);	
+	$postData = array('imageFilename' => $filename, 'profileFilename' => $filename2, 'image' => $image, 'id' => $row['id'], 'user' => $row['user'], 'timePosted' => $row['timeposted'], 'caption' => $row['caption'], 'username' => $row2['username'], 'likes' => pg_num_rows($result2) - 1, 'liked' => $liked, 'comments' => pg_num_rows($result), 'profilePicture' => $profilePicture);	
 	header( 'Content-type: application/json; charset=utf-8' );
 	$jsonStr = json_encode($postData);
 	echo $jsonStr;

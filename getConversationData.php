@@ -8,7 +8,7 @@ if (!$conn) {
 $user = $_GET['arg1'];
 $index = $_GET['arg2'];
 
-$sql = "SELECT DISTINCT sender, receiver FROM (SELECT DISTINCT receiver, sender, timeSent FROM messages WHERE sender = $user UNION SELECT DISTINCT sender, receiver, timeSent FROM messages WHERE receiver = $user ORDER BY timeSent DESC) AS t";
+$sql = "SELECT DISTINCT sender, receiver FROM (SELECT DISTINCT receiver, sender, timesent FROM messages WHERE sender = $user UNION SELECT DISTINCT sender, receiver, timesent FROM messages WHERE receiver = $user ORDER BY timesent DESC) AS t";
 $result = pg_query($conn, $sql);
 
 if (pg_num_rows($result) >= 0)
@@ -28,7 +28,7 @@ if (pg_num_rows($result) >= 0)
         $result = pg_query($conn, $sql);
         if ($row = pg_fetch_array($result))
 		{
-			$filename = $row['profilePicture'];
+			$filename = $row['profilepicture'];
 			if ($filename == "")
 			{
 				$filename = "roastrtransparent.png";
@@ -37,11 +37,11 @@ if (pg_num_rows($result) >= 0)
 			$data = fread($file, filesize("profilePictures/$filename"));
 			$picture = base64_encode($data);
 		}
-		$sql = "SELECT timeSent, message FROM messages WHERE sender = $other AND receiver = $user OR sender = $user AND receiver = $other ORDER BY timeSent DESC";
+		$sql = "SELECT timesent, message FROM messages WHERE sender = $other AND receiver = $user OR sender = $user AND receiver = $other ORDER BY timesent DESC";
 		$result = pg_query($conn, $sql);
 		if ($row2 = pg_fetch_array($result))
 		{
-			$likeData = array('user' => $other, 'lastSent' => $row2['timeSent'], 'username' => $row['username'], 'message' => $row2['message'], 'profilePicture' => $picture, 'profileFilename' => $filename);
+			$likeData = array('user' => $other, 'lastSent' => $row2['timesent'], 'username' => $row['username'], 'message' => $row2['message'], 'profilePicture' => $picture, 'profileFilename' => $filename);
 		}
     echo json_encode($likeData);
 }

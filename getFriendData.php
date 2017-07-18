@@ -17,11 +17,11 @@ if (pg_num_rows($result) >= 0)
     {
 	}
 	$other = $row['receiver'];
-    $sql = "SELECT username, profilePicture FROM users WHERE id = " . $other;
+    $sql = "SELECT username, profilepicture FROM users WHERE id = " . $other;
     $result = pg_query($conn, $sql);
     if ($row = pg_fetch_array($result))
 	{
-		$filename = $row['profilePicture'];
+		$filename = $row['profilepicture'];
 		$file = fopen("profilePictures/$filename", "r");
 		$data = fread($file, filesize("profilePictures/$filename"));
 		$picture = base64_encode($data);

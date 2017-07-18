@@ -8,12 +8,12 @@ if (!$conn) {
 $user = $_GET['arg1'];
 $user2 = $_GET['arg2'];
 
-$sql = "SELECT username, profilePicture FROM users WHERE id = $user";
+$sql = "SELECT username, profilepicture FROM users WHERE id = $user";
 
 if ($result = pg_query($conn, $sql)) 
 {
 	$row = pg_fetch_array($result);
-	$filename = $row['profilePicture'];
+	$filename = $row['profilepicture'];
 	if (!$filename)
 	{
 		$filename = "roastrtransparent.png";

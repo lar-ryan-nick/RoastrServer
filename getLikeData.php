@@ -8,7 +8,7 @@ if (!$conn) {
 $post = $_GET['arg1'];
 $index = $_GET['arg2'];
 
-$sql = "SELECT * FROM likes WHERE post = $post ORDER BY timeLiked";
+$sql = "SELECT * FROM likes WHERE post = $post ORDER BY timeliked";
 $result = pg_query($conn, $sql);
 
 if (pg_num_rows($result) >= 0)
@@ -20,15 +20,15 @@ if (pg_num_rows($result) >= 0)
 			$i--;
 		}
 	}
-        $sql = "SELECT username, profilePicture FROM users WHERE id = " . $row['user'];
+        $sql = "SELECT username, profilepicture FROM users WHERE id = " . $row['user'];
         $result = pg_query($conn, $sql);
         if ($row2 = pg_fetch_array($result))
 		{
-			$filename = $row2['profilePicture'];
+			$filename = $row2['profilepicture'];
 			$file = fopen("profilePictures/$filename", "r");
 			$data = fread($file, filesize("profilePictures/$filename"));
 			$picture = base64_encode($data);
-            $likeData = array('id' => $row['id'], 'user' => $row['user'], 'timeLiked' => $row['timeLiked'], 'username' => $row2['username'], 'post' => $row['post'], 'profilePicture' => $picture);
+            $likeData = array('id' => $row['id'], 'user' => $row['user'], 'timeLiked' => $row['timeliked'], 'username' => $row2['username'], 'post' => $row['post'], 'profilePicture' => $picture);
 		}
     echo json_encode($likeData);
 }

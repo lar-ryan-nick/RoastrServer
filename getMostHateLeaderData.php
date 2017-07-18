@@ -42,11 +42,11 @@ else
 			}
 		}	
 	}
-		$sql = "SELECT username, profilePicture FROM users WHERE id = " . $largest;
+		$sql = "SELECT username, profilepicture FROM users WHERE id = " . $largest;
     	$result2 = pg_query($conn, $sql);
     	if ($row2 = pg_fetch_array($result2))
     	{
-			$filename = $row2['profilePicture'];
+			$filename = $row2['profilepicture'];
 	    	$file = fopen("profilePictures/$filename", "r");
 	    	$data = fread($file, filesize("profilePictures/$filename"));
 	    	fclose($file);

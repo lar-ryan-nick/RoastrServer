@@ -9,7 +9,7 @@ $user1 = $_GET['user1'];
 $user2 = $_GET['user2'];
 $index = $_GET['index'];
 
-$sql = "SELECT * FROM messages WHERE (sender = $user1 AND receiver = $user2) OR (sender = $user2 AND receiver = $user1) ORDER BY timeSent";
+$sql = "SELECT * FROM messages WHERE (sender = $user1 AND receiver = $user2) OR (sender = $user2 AND receiver = $user1) ORDER BY timesent";
 $result = pg_query($conn, $sql);
 if (pg_num_rows($result) > 0)
 {
@@ -17,15 +17,15 @@ if (pg_num_rows($result) > 0)
     {
 		$row = pg_fetch_array($result);
     }
-	$sql = "SELECT username, profilePicture FROM users WHERE id = " . $row['sender'];
+	$sql = "SELECT username, profilepicture FROM users WHERE id = " . $row['sender'];
 	$result = pg_query($conn, $sql);
 	if ($row2 = pg_fetch_array($result))
 	{
-		$filename = $row2['profilePicture'];
+		$filename = $row2['profilepicture'];
 		$file = fopen("profilePictures/$filename", "r");
 		$data = fread($file, filesize("profilePictures/$filename"));
 		$picture = base64_encode($data);
-		$likeUsers = array('username' => $row2['username'], 'message' => $row['message'], 'id' => $row['id'], 'user' => $row['sender'], 'timeSent' => $row['timeSent'], 'profilePicture' => $picture);
+		$likeUsers = array('username' => $row2['username'], 'message' => $row['message'], 'id' => $row['id'], 'user' => $row['sender'], 'timeSent' => $row['timesent'], 'profilePicture' => $picture);
 		echo json_encode($likeUsers);
 	}
 	else

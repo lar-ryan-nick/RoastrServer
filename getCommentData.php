@@ -20,11 +20,11 @@ if (pg_num_rows($result) > 0)
 	$result = pg_query($conn, $sql);
 	if ($row2 = pg_fetch_array($result))
 	{
-		$filename = $row2['profilePicture'];
+		$filename = $row2['profilepicture'];
 		$file = fopen("profilePictures/$filename", "r");
 		$data = fread($file, filesize("profilePictures/$filename"));
 		$picture = base64_encode($data);
-		$likeUsers = array('username' => $row2['username'], 'comment' => $row['comment'], 'id' => $row['id'], 'post' => $row['post'], 'user' => $row['user'], 'timeCommented' => $row['timeCommented'], 'profilePicture' => $picture, 'profileFilename' => $filename);
+		$likeUsers = array('username' => $row2['username'], 'comment' => $row['comment'], 'id' => $row['id'], 'post' => $row['post'], 'user' => $row['user'], 'timeCommented' => $row['timecommented'], 'profilePicture' => $picture, 'profileFilename' => $filename);
 		echo json_encode($likeUsers);
 	}
 	else
