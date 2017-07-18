@@ -19,7 +19,7 @@ else if ($user == 0)
 }
 else
 {
-	$sql = "SELECT * FROM posts WHERE user = $user ORDER BY timePosted";
+	$sql = "SELECT * FROM posts WHERE user = $user ORDER BY timePosted ASC";
 }
 
 if ($result = pg_query($conn, $sql)) 
@@ -55,13 +55,13 @@ if ($result = pg_query($conn, $sql))
 	}
 	else
 	{
-		echo "Fuck Error: $sql <br>";
+		echo "Fuck Error: $sql <br>" . pg_last_error($conn);
 	}
 	$sql = "SELECT id FROM comments WHERE post = ". $row['id'];
 	$result = pg_query($conn, $sql);
 	if (!$result)
 	{
-		echo "Ass Error: $sql <br>";
+		echo "Ass Error: $sql <br>" . pg_last_error($conn);
 	}
 	$liked = false;
 	$result2;
@@ -85,7 +85,7 @@ if ($result = pg_query($conn, $sql))
 } 
 else 
 {
-    echo "Shit Error: " . $sql . "<br>";
+    echo "Shit Error: " . $sql . "<br>" . pg_last_error($conn);
 }
 
 pg_close($conn);
