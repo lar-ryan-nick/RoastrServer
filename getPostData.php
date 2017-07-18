@@ -11,15 +11,15 @@ $user2 = $_GET['arg3'];
 
 if ($user == -1)
 {
-	$sql = "SELECT * FROM posts WHERE id = $post";
+	$sql = "SELECT * FROM POSTS WHERE ID = $post";
 }
 else if ($user == 0)
 {
-	$sql = "SELECT * FROM posts ORDER BY timePosted";
+	$sql = "SELECT * FROM POSTS ORDER BY TIMEPOSTED";
 }
 else
 {
-	$sql = "SELECT * FROM posts WHERE user = $user ORDER BY timePosted ASC";
+	$sql = "SELECT * FROM POSTS WHERE USER = $user ORDER BY TIMEPOSTED";
 }
 
 if ($result = pg_query($conn, $sql)) 
@@ -39,7 +39,7 @@ if ($result = pg_query($conn, $sql))
 	$data = fread($file, filesize("images/$filename"));
 	fclose($file);
 	$image = base64_encode($data);
-	$sql = "SELECT username, profilePicture FROM users WHERE id = " . $row['user'];
+	$sql = "SELECT USERNAME, PROFILEPICTURE FROM USERS WHERE ID = " . $row['user'];
 	if ($result = pg_query($conn, $sql))
 	{
 		$row2 = pg_fetch_array($result);
@@ -57,7 +57,7 @@ if ($result = pg_query($conn, $sql))
 	{
 		echo "Fuck Error: $sql <br>" . pg_last_error($conn);
 	}
-	$sql = "SELECT id FROM comments WHERE post = ". $row['id'];
+	$sql = "SELECT ID FROM COMMENTS WHERE POST = ". $row['id'];
 	$result = pg_query($conn, $sql);
 	if (!$result)
 	{
@@ -65,7 +65,7 @@ if ($result = pg_query($conn, $sql))
 	}
 	$liked = false;
 	$result2;
-	$sql = "SELECT user FROM likes WHERE post = " . $row['id'];
+	$sql = "SELECT USER FROM LIKES WHERE POST = " . $row['id'];
 	if ($result2 = pg_query($conn, $sql))
 	{
 		$liked = false;
