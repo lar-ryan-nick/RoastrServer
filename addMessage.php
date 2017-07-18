@@ -55,7 +55,7 @@ if ($sender != $receiver)
     $result = pg_query($conn, $sql);
     if ($row = pg_fetch_array($result))
     {   
-        $deviceToken = $row['deviceToken'];
+        $deviceToken = $row['devicetoken'];
     }
 	$body['aps'] = array('alert' => "$username: $message", 'badge' => 1, 'sound' => 'default');
 	$body['sender'] = $sender;

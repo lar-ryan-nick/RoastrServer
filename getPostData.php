@@ -11,15 +11,15 @@ $user2 = $_GET['arg3'];
 
 if ($user == -1)
 {
-	$sql = "SELECT * FROM POSTS WHERE ID = $post";
+	$sql = "SELECT * FROM posts WHERE id = $post";
 }
 else if ($user == 0)
 {
-	$sql = "SELECT * FROM POSTS ORDER BY TIMEPOSTED";
+	$sql = "SELECT * FROM posts ORDER BY timeposted";
 }
 else
 {
-	$sql = "SELECT * FROM POSTS WHERE \"user\" = $user ORDER BY TIMEPOSTED";
+	$sql = "SELECT * FROM posts WHERE \"user\" = $user ORDER BY timeposted";
 }
 
 if ($result = pg_query($conn, $sql)) 
@@ -39,11 +39,11 @@ if ($result = pg_query($conn, $sql))
 	$data = fread($file, filesize("images/$filename"));
 	fclose($file);
 	$image = base64_encode($data);
-	$sql = "SELECT USERNAME, PROFILEPICTURE FROM USERS WHERE ID = " . $row['user'];
+	$sql = "SELECT username, profilepicture FROM users WHERE id = " . $row['user'];
 	if ($result = pg_query($conn, $sql))
 	{
 		$row2 = pg_fetch_array($result);
-		$filename2 = $row2['profilePicture'];
+		$filename2 = $row2['profilepicture'];
 		if ($filename2 == "")
 		{
 			$filename2 = "roastrtransparent.png";
@@ -57,7 +57,7 @@ if ($result = pg_query($conn, $sql))
 	{
 		echo "Fuck Error: $sql <br>" . pg_last_error($conn);
 	}
-	$sql = "SELECT ID FROM COMMENTS WHERE POST = ". $row['id'];
+	$sql = "SELECT id FROM comments WHERE post = ". $row['id'];
 	$result = pg_query($conn, $sql);
 	if (!$result)
 	{
@@ -65,7 +65,7 @@ if ($result = pg_query($conn, $sql))
 	}
 	$liked = false;
 	$result2;
-	$sql = "SELECT USER FROM LIKES WHERE POST = " . $row['id'];
+	$sql = "SELECT user FROM likes WHERE post = " . $row['id'];
 	if ($result2 = pg_query($conn, $sql))
 	{
 		$liked = false;

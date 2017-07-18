@@ -79,7 +79,7 @@ while ($index = strpos($caption, "@", $index))
 	$result = pg_query($conn, $sql);
 	if ($row = pg_fetch_array($result))
     {   
-    	$deviceTokens[] = $row["deviceToken"];
+    	$deviceTokens[] = $row["devicetoken"];
     }
     $index++;
 }

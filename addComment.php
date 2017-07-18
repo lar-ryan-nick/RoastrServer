@@ -57,7 +57,7 @@ if ($postUser != $user)
     $result3 = pg_query($conn, $sql3);
     if ($row3 = pg_fetch_array($result3))
     {   
-        $deviceTokens[] = $row3['deviceToken'];
+        $deviceTokens[] = $row3['devicetoken'];
     }
 	$body['aps'] = array('alert' => "$username roasted one of your posts!", 'badge' => 1, 'sound' => 'default');
 	$body['postID'] = $post;
@@ -80,7 +80,7 @@ while ($index = strpos($comment, "@", $index))
     {
     	if ($row5['id'] != $user)
     	{
-    		$deviceTokens[] = $row5["deviceToken"];
+    		$deviceTokens[] = $row5["devicetoken"];
 		}
 	}
 	$index++;
