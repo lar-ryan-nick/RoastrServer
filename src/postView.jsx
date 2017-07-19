@@ -133,10 +133,10 @@ class Comments extends React.Component
                     temp.push(JSON.parse(xhttp.responseText));
                     temp.sort(function(p1, p2)
 		            {
-	            		var dateData1 = p1["timeCommented"].split(" ");
+	            		var dateData1 = p1["timecommented"].split(" ");
 		            	var dayData1 = dateData1[0].split("-");
             			var timeData1 = dateData1[1].split(":");
-            			var dateData2 = p2["timeCommented"].split(" ");
+            			var dateData2 = p2["timecommented"].split(" ");
 	            		var dayData2 = dateData2[0].split("-");
 	            		var timeData2 = dateData2[1].split(":");
 	            		var d1 = new Date(dayData1[0], dayData1[1] - 1, dayData1[2], timeData1[0], timeData1[1], timeData1[2]);

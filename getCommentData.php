@@ -8,7 +8,7 @@ if (!$conn) {
 $post = $_GET['arg1'];
 $index = $_GET['arg2'];
 
-$sql = "SELECT * FROM comments WHERE post = $post ORDER BY timecommented DESC";
+$sql = "SELECT * FROM comments WHERE post = $post ORDER BY timecommented ASC";
 $result = pg_query($conn, $sql);
 if (pg_num_rows($result) > 0)
 {
