@@ -28,10 +28,10 @@ else
     echo "Error: $sql <br>" . pg_last_error($conn);
 }
 
-$comment = addslashes($comment);
+//$comment = addslashes($comment);
 
 $sql = "INSERT INTO comments (id, comment, post, \"user\")
-        VALUES ($id, '$comment', $post, $user);";
+        VALUES ($id, $comment, $post, $user);";
 if (mysqli_query($conn, $sql))
 {
     echo "New record created successfully <br>";
