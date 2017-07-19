@@ -8,7 +8,7 @@
 	{
 		echo "Fuck";
 	}
-	$sql = "ALTER SEQUENCE comment_id_seq RESTART WITH 444";
+	$sql = "ALTER SEQUENCE comments_id_seq RESTART WITH 444";
 	pg_query($conn, $sql);
 	pg_close($conn);
 ?>
