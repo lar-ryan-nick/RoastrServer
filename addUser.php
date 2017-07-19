@@ -13,16 +13,8 @@ $result = pg_query($conn, $sql);
 
 if ($result)
 {
-	$idFound = false;
-	$user = pg_num_rows($result) + 1;
     for ($i = 1; $row = pg_fetch_array($result); $i++)
     {   
-        if (!$idFound && $i < $row['id'])
-        {   
-			echo "$i " . $row['id']; 
-            $user = $i; 
-            $idFound = true;
-        }   
         if ($row["username"] == $username)
         {   
             die("User already exists");
@@ -34,8 +26,8 @@ else
 	echo "Error: " . $sql . "<br>" . pg_last_error($conn);
 }
 
-$sql = "INSERT INTO users (id, username, password)
-        VALUES ($user, '$username', '$pass')";
+$sql = "INSERT INTO users (username, password)
+        VALUES ('$username', '$pass')";
 if (pg_query($conn, $sql)) 
 {
 	echo "New record created successfully";

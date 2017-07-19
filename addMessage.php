@@ -13,7 +13,7 @@ if ($sender == 0 || $receiver == 0)
 {
 	die("Message failed to send");
 }
-
+/*
 $sql = "SELECT id FROM messages";
 $result = pg_query($conn, $sql);
 if ($result)
@@ -24,26 +24,25 @@ if ($result)
         if ($i < $row['id'])
         {   
             $id = $i; 
-            break;
-        }   
+        }   			
     }
 }
 else
 {
     echo "Error: $sql <br>" . pg_last_error($conn);
 }
-
+ */
 $message = str_replace("'", "''", $message);
 
-$sql = "INSERT INTO messages (id, message, sender, receiver)
-        VALUES ($id, '$message', $sender, $receiver)";
+$sql = "INSERT INTO messages (message, sender, receiver)
+        VALUES ('$message', $sender, $receiver)";
 if (pg_query($conn, $sql))
 {
     echo "New record created successfully <br>";
 }
 else
 {
-    echo "Error: " . $sql . "<br>" . pg_last_error($conn);
+    die("Error: " . $sql . "<br>" . pg_last_error($conn));
 }
 if ($sender != $receiver)
 {   

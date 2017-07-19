@@ -12,15 +12,8 @@ $sql = "SELECT * FROM likes";
 $result = pg_query($conn, $sql);
 if ($result)
 {
-	$idFound = false;
-	$like = pg_num_rows($result) + 1;
     for ($i = 1; $row = pg_fetch_array($result); $i++)
     {
-		if (!$idFound && $i < $row['id'])
-		{
-			$like = $i;
-			$idFound = true;
-		}
 		if ($row["post"] == $post && $row['user'] == $user)
 		{
 	    	die("Like already exists");
@@ -32,8 +25,8 @@ else
 	echo "Error: $sql <br>" . pg_last_error($conn);
 }
 
-$sql = "INSERT INTO likes (id, \"user\", post)
-         VALUES ($like, $user, $post)";
+$sql = "INSERT INTO likes (\"user\", post)
+         VALUES ($user, $post)";
 
 if (pg_query($conn, $sql))
 {

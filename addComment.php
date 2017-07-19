@@ -8,7 +8,7 @@ if (!$conn) {
 $comment = $_REQUEST['comment'];
 $post = $_REQUEST['post'];
 $user = $_REQUEST['user'];
-
+/*
 $sql = "SELECT id FROM comments";
 $result = pg_query($conn, $sql);
 if ($result)
@@ -27,11 +27,11 @@ else
 {
     echo "Error: $sql <br>" . pg_last_error($conn);
 }
-
+ */
 $comment = str_replace("'", "''", $comment);
 
-$sql = "INSERT INTO comments (id, comment, post, \"user\")
-        VALUES ($id, '$comment', $post, $user);";
+$sql = "INSERT INTO comments (comment, post, \"user\")
+        VALUES ('$comment', $post, $user);";
 if (pg_query($conn, $sql))
 {
     echo "New record created successfully <br>";

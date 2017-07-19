@@ -8,7 +8,7 @@ if (!$conn) {
 $image = $_REQUEST['image'];
 $caption = $_REQUEST['caption'];
 $user = $_REQUEST['userID'];
-
+/*
 $sql = "SELECT id FROM posts";
 $result = pg_query($conn, $sql);
 $post = pg_num_rows($result) + 1;
@@ -20,13 +20,13 @@ for ($i = 1; $row = pg_fetch_array($result); $i++)
 		break;
 	}
 }
-
+ */
 $caption = str_replace("'", "''", $caption);
 
 if ($image == "")
 {
-    $sql = "INSERT INTO posts (id, caption, \"user\")
-		VALUES ($post, '$caption', $user)";
+    $sql = "INSERT INTO posts (caption, \"user\")
+		VALUES ('$caption', $user)";
 }
 else
 {
@@ -37,8 +37,8 @@ else
 	$image = base64_decode($image);
 	fwrite($file, $image);
 	fclose($file);
-	$sql = "INSERT INTO posts (id, image, caption, \"user\")
-            VALUES ($post, '$name', '$caption', $user)";   
+	$sql = "INSERT INTO posts (image, caption, \"user\")
+            VALUES ('$name', '$caption', $user)";   
 }   
 if (pg_query($conn, $sql)) 
 {

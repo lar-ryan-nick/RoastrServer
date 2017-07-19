@@ -11,19 +11,13 @@ if ($requester == $receiver)
 {
 	die("Can't friend yourself!");
 }
-$sql = "SELECT id, requester, receiver FROM friends";
+$sql = "SELECT requester, receiver FROM friends";
 $result = pg_query($conn, $sql);
 if ($result)
 {
-	$idFound = false;
 	$request = pg_num_rows($result) + 1;
     for ($i = 1; $row = pg_fetch_array($result); $i++)
     {
-		if (!$idFound && $i < $row['id'])
-		{
-			$request = $i;
-			$idFound = true;
-		}
 		if ($row["requester"] == $requester && $row['receiver'] == $receiver)
 		{
 	    	die("Request already exists");
@@ -35,8 +29,8 @@ else
 	echo "Error: $sql <br>" . pg_last_error($conn);
 }
 
-$sql = "INSERT INTO friends (id, requester, receiver)
-         VALUES ($request, $requester, $receiver)";
+$sql = "INSERT INTO friends (requester, receiver)
+         VALUES ($requester, $receiver)";
 if (pg_query($conn, $sql))
 {
 	echo "New record created successfully";
