@@ -65,7 +65,7 @@ if ($result = pg_query($conn, $sql))
 	}
 	$liked = false;
 	$result2;
-	$sql = "SELECT user FROM likes WHERE post = " . $row['id'];
+	$sql = "SELECT \"user\" FROM likes WHERE post = " . $row['id'];
 	if ($result2 = pg_query($conn, $sql))
 	{
 		$liked = false;
