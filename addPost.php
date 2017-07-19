@@ -59,8 +59,11 @@ if (pg_query($conn, $sql))
 		}   
 	} 
 	 */	
+	$sql = "SELECT id from posts WHERE image = '$name' AND caption = '$caption' AND \"user\" = $user";
+	$result = pg_query($conn, $sql);
+	$row = pg_fetch_array($result);
 	$sql = "INSERT INTO likes (\"user\", post)
-			VALUES (0, $post)";
+			VALUES (0, " . $row['id'] . ")";
 	pg_query($conn, $sql);
 } 
 else
