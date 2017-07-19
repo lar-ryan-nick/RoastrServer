@@ -101,7 +101,7 @@ class Comments extends React.Component
 				}.bind(this));
 	    	}
     	}.bind(this)
-    	xhttp.open("GET", "https://roastr2.herokuapp.com/addComment.php?comment=\"" + this.textField.value + "\"&post=" + this.props.post + "&user=" + localStorage.getItem("userID"));
+    	xhttp.open("GET", "https://roastr2.herokuapp.com/addComment.php?comment=" + this.textField.value + "&post=" + this.props.post + "&user=" + localStorage.getItem("userID"));
     	xhttp.send();
 		this.textField.value = "";
    }
