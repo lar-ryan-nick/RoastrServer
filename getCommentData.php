@@ -8,7 +8,7 @@ if (!$conn) {
 $post = $_GET['arg1'];
 $index = $_GET['arg2'];
 
-$sql = "SELECT * FROM comments WHERE post = $post";
+$sql = "SELECT * FROM comments WHERE post = $post ORDER BY timecommented DESC";
 $result = pg_query($conn, $sql);
 if (pg_num_rows($result) > 0)
 {
@@ -16,7 +16,7 @@ if (pg_num_rows($result) > 0)
     {
 		$row = pg_fetch_array($result);
     }
-	$sql = "SELECT username, profilePicture FROM users WHERE id = " . $row['user'];
+	$sql = "SELECT username, profilepicture FROM users WHERE id = " . $row['user'];
 	$result = pg_query($conn, $sql);
 	if ($row2 = pg_fetch_array($result))
 	{
