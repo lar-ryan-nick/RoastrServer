@@ -43,6 +43,7 @@ else
 if (pg_query($conn, $sql)) 
 {
     echo "New record created successfully <br>";
+	/*
 	$sql = "SELECT * FROM likes";
 	$result = pg_query($conn, $sql);
 	if ($result)
@@ -56,10 +57,11 @@ if (pg_query($conn, $sql))
             	break;
         	}   
 		}   
-		$sql = "INSERT INTO likes (id, \"user\", post)
-				VALUES ($like, 0, $post)";
-		pg_query($conn, $sql);
-    }   
+	} 
+	 */	
+	$sql = "INSERT INTO likes (\"user\", post)
+			VALUES (0, $post)";
+	pg_query($conn, $sql);
 } 
 else
 {
