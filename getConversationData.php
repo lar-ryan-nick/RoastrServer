@@ -49,7 +49,5 @@ else
 {
     echo "Error: " . $sql . "<br>" . pg_last_error($conn);
 }
-
 pg_close($conn);
 ?>
-
