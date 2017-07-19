@@ -28,7 +28,7 @@ else
     echo "Error: $sql <br>" . pg_last_error($conn);
 }
 
-$comment = addslashes($comment);
+$comment = str_replace("'", "''", $comment);
 
 $sql = "INSERT INTO comments (id, comment, post, \"user\")
         VALUES ($id, '$comment', $post, $user);";

@@ -336,7 +336,7 @@ function post()
 		console.log(imageData);
 		xhttp.open("POST", "https://roastr2.herokuapp.com/addPost.php", true);
 		xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-		xhttp.send("image=" + imageData + "&caption=\"" + caption.value + "\"&userID=" + localStorage.getItem("userID"));
+		xhttp.send("image=" + imageData + "&caption=" + caption.value + "&userID=" + localStorage.getItem("userID"));
 		var postButton = document.getElementById("post");
 		postButton.disabled = true;
 	}

@@ -34,6 +34,7 @@ else
 
 $sql = "INSERT INTO likes (id, \"user\", post)
          VALUES ($like, $user, $post)";
+
 if (pg_query($conn, $sql))
 {
 	echo "New record created successfully";

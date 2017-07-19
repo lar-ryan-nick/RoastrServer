@@ -31,10 +31,12 @@ if ($result)
 else
 {
     echo "Error: $sql <br>" . pg_last_error($conn);
-}	
+}
+
+$message = str_replace("'", "''", $message);
 
 $sql = "INSERT INTO messages (id, message, sender, receiver)
-        VALUES ($id, \"" . chop($message) . "\", $sender, $receiver)";
+        VALUES ($id, '$message', $sender, $receiver)";
 if (pg_query($conn, $sql))
 {
     echo "New record created successfully <br>";

@@ -21,10 +21,12 @@ for ($i = 1; $row = pg_fetch_array($result); $i++)
 	}
 }
 
+$caption = str_replace("'", "''", $caption);
+
 if ($image == "")
 {
     $sql = "INSERT INTO posts (id, caption, \"user\")
-            VALUES ($post, " . chop($caption) . ", $user)";
+		VALUES ($post, '$caption', $user)";
 }
 else
 {
@@ -36,7 +38,7 @@ else
 	fwrite($file, $image);
 	fclose($file);
 	$sql = "INSERT INTO posts (id, image, caption, \"user\")
-            VALUES ($post, \"$name\", " . chop($caption) . ", $user)";   
+            VALUES ($post, '$name', '$caption', $user)";   
 }   
 if (pg_query($conn, $sql)) 
 {
@@ -75,7 +77,7 @@ while ($index = strpos($caption, "@", $index))
 	{
 		$substring = substr($caption, $index + 1, strlen($caption) - $index - 2);
 	}
-	$sql = "SELECT deviceToken FROM users WHERE username = \"$substring\"";
+	$sql = "SELECT devicetoken FROM users WHERE username = \"$substring\"";
 	$result = pg_query($conn, $sql);
 	if ($row = pg_fetch_array($result))
     {   

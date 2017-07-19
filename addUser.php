@@ -35,7 +35,7 @@ else
 }
 
 $sql = "INSERT INTO users (id, username, password)
-        VALUES ($user, $username, $pass)";
+        VALUES ($user, '$username', '$pass')";
 if (pg_query($conn, $sql)) 
 {
 	echo "New record created successfully";
